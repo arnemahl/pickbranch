@@ -38,7 +38,9 @@ async function search(branches, input) {
     if (input[0] === '*') {
       return branches.filter(branch => branch.includes(input.slice(1)));
     } else {
-      return branches.filter(branch => branch.indexOf(input) === 0);
+      return branches.filter(
+        branch => branch.replace('* ', '').indexOf(input) === 0
+      );
     }
   }
 }
