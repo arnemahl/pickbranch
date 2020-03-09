@@ -31,11 +31,15 @@ async function getBranches() {
     .filter(Boolean);
 }
 
+const ascBy = fn => (a, b) => fn(a) - fn(b);
+
 async function search(branches, input) {
   if (!input) {
     return branches;
   } else {
-    return branches.filter(branch => branch.indexOf(input) > -1);
+    return branches
+      .filter(branch => branch.indexOf(input) > -1)
+      .sort(ascBy(branch => branch.indexOf(input)));
   }
 }
 
