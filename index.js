@@ -35,7 +35,11 @@ async function search(branches, input) {
   if (!input) {
     return branches;
   } else {
-    return branches.filter(branch => branch.indexOf(input) > -1);
+    if (input[0] === '*') {
+      return branches.filter(branch => branch.includes(input.slice(1)));
+    } else {
+      return branches.filter(branch => branch.indexOf(input) === 0);
+    }
   }
 }
 
